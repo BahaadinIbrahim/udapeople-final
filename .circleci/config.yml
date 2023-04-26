@@ -240,7 +240,7 @@ jobs:
       - checkout
       - install_ansible
       - add_ssh_keys:
-          fingerprints: ["d9:11:52:f5:19:c9:91:7c:12:01:d4:82:0b:e5:ca:b4"]
+          fingerprints: ["3c:23:ae:09:73:1e:37:c2:8b:44:55:a8:96:95:3f:91"]
       - attach_workspace:
           at: ~/
       - run:
@@ -327,7 +327,7 @@ jobs:
       - install_ansible
       - install_nodejs
       - add_ssh_keys:
-          fingerprints: ["d9:11:52:f5:19:c9:91:7c:12:01:d4:82:0b:e5:ca:b4"]
+          fingerprints: ["3c:23:ae:09:73:1e:37:c2:8b:44:55:a8:96:95:3f:91"]
       - attach_workspace:
           at: ~/
       - restore_cache:
@@ -502,16 +502,9 @@ workflows:  # create workflows
       - scan-backend:
           requires: [build-backend]
       - scan-frontend:
-          requires: [build-frontend]
-      - notify_on_success:
-         requires:
-         - test-frontend
-         - test-backend
-         - scan-frontend
-         - scan-backend    
+          requires: [build-frontend] 
 
       - deploy-infrastructure: 
-
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches:
